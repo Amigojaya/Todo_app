@@ -1,0 +1,8 @@
+<div class="container">
+	<% @tasks.each do |task| %>
+	<%= task.id %>
+	<%= task.name %>
+	<%= task.description %>
+	<hr>
+	<% end %>
+</div>
