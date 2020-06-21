@@ -2,11 +2,11 @@
 	<div class="field">
 	    <%= f.label :name %>
 	    <%= f.text_field :name %><br>
-	</div>
-	<div class="field">
+	
+	
 	    <%= f.label :completed %>
 	    <%= f.check_box :completed %>
 	</div>
-	    <%= link_to_remove_association "remove todo ", f %>
-	</div>
+	    <%= link_to_remove_association "remove todo ", f, class: "text-danger" %>
+	
 </div>
