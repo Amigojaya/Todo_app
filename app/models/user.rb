@@ -6,4 +6,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
     has_many :user_tasks, dependent: :destroy
+
+    def subscribe?
+    	self.subscribe == true
+    end
+
 end

@@ -1,4 +1,5 @@
 class UserTasksController < ApplicationController
+  before_action :authenticate_user!
   def index
   	@tasks = UserTask.all
   end
@@ -13,6 +14,9 @@ class UserTasksController < ApplicationController
   	@task = UserTask.create(user_task_params)
   	if @task.save
   		redirect_to root_path
+      if current_user.subscribe?
+        TestMailer.test_mail_user(current_user, @task).deliver_now
+      end
   	else
   		render 'new'
   	end
@@ -20,7 +24,7 @@ class UserTasksController < ApplicationController
   end
 
   def edit
-  	@task = UserTask.find(params[:id])
+  	@task = current_user.user_tasks.find(params[:id])
   end
 
   def update
@@ -35,7 +39,17 @@ class UserTasksController < ApplicationController
   end
 
   def show
-  	@task = UserTask.find(params[:id])
+  	@task = current_user.user_tasks.find(params[:id])
+    @todos = @task.todos
+    @total_count = @task.todos.count
+
+    if @task.todos.exists? 
+      @completed = @task.todos.where(completed: true).count
+      @width = @completed/@total_count * 100
+    else
+      @width = 0
+    end
+
   end
 
   private 

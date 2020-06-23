@@ -1,0 +1,9 @@
+<h1>This is test mail</h1>
+<h3>Your email is - <%= @user.email %></h3>
+<h3>Newly created task is - > <%= @task.name %></h3>
+<h5>Created todos - <%= @task.todos.count %> todos for this task</h5>
+<ul>
+	<% @task.todos.each do |todo| %>
+	<li><%= todo.name %></li>
+	<% end %>
+</ul>
