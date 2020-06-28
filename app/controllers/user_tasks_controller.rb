@@ -31,7 +31,7 @@ class UserTasksController < ApplicationController
 
   	@task = UserTask.find(params[:id])
   	if @task.update(user_task_params)
-  		redirect_to root_path
+  		redirect_to user_task_path(@task)
   	else
   		render 'edit'
   	end
@@ -42,10 +42,10 @@ class UserTasksController < ApplicationController
   	@task = current_user.user_tasks.find(params[:id])
     @todos = @task.todos
     @total_count = @task.todos.count
-
-    if @task.todos.exists? 
-      @completed = @task.todos.where(completed: true).count
-      @width = @completed/@total_count * 100
+    @completed = @task.todos.where(completed: true).count
+    if @task.todos.exists? == true
+      
+      @width = @completed.to_f/@total_count * 100
     else
       @width = 0
     end

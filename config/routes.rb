@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :quotes
   resources :user_tasks
   devise_for :users
   root 'home#index'
