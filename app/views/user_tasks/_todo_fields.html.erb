@@ -1,12 +1,12 @@
- <div class="nested-fields">
+<div class="nested-fields">
 	<div class="field">
-	    <%= f.label :name %>
+	    <%= f.label :task_name %> :
 	    <%= f.text_field :name %><br>
 	
 	
 	    <%= f.label :completed %>
 	    <%= f.check_box :completed %>
 	</div>
-	    <%= link_to_remove_association "remove todo ", f, class: "text-danger" %>
-	
+	    <%= link_to_remove_association "Remove ", f, class: "text-danger" %>
+	    <hr>
 </div>

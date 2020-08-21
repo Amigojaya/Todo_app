@@ -5,6 +5,7 @@ class TestMailer < ApplicationMailer
 		@task = task
 		@todos_total = @task.todos.count
 		@completed = @task.todos.where(completed: true).count
+		 @width = @completed.to_f/@todos_total * 100
 
 	    if @task.todos.exists? == true
 	      
@@ -13,7 +14,7 @@ class TestMailer < ApplicationMailer
 		      @width = 0
 		end
 
-		mail(to: @user.email, subject: "Test mail")
+		make_bootstrap_mail(to: @user.email, subject: "Test mail")
 	end
 
 end

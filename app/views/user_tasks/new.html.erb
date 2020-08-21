@@ -1,5 +1,7 @@
 <div class="container">
 
+  <div>Randowm quote - <%= @quote.quotes %></div>
+  <h1>Create To-do list </h1>
 	<%= form_for @task do |form| %>
     <% if @task.errors.any? %>
       <div id="error_explanation">
@@ -14,27 +16,27 @@
     <% end %>
 
     <div class="field">
-      <%= form.label :name %>
+      <%= form.label :todo_name %>
       <%= form.text_field :name, class: 'form-control' %>
     </div>
 
     <div class="field">
       <%= form.label :description %>
-      <%= form.text_field :description, class: 'form-control' %>
+      <%= form.text_field :description, class: 'form-control', placeholder: "optional" %>
     </div>
 
     <%= form.hidden_field :user_id, value: current_user.id %>
 
-    <h3>Add todo-lists</h3>
+    <h3>Add Tasks ( you can add many tasks you want )</h3><br>
     <% form.fields_for :todos do |todo| %>
       <%= render 'todo_fields', f: todo %>
     <% end %>
     <div class="links">
-    <%= link_to_add_association "add todo", form, :todos %>
+    <%= link_to_add_association "add task", form, :todos %>
     </div>
 
     <div class="actions">
-      <%= form.submit "Create", class: "btn btn-success btn-block mt-3" %>
+      <%= form.submit "Create ", class: "btn btn-success btn-block mt-3" %>
     </div>
   <% end %>
 

@@ -16,11 +16,57 @@
 
 	<h1 class="ml-3">Task details </h1>
 	<div>
-		Task name - <%= @task.name %>
+		Your To-do name - <%= @task.name %>
 	</div>
 	<div>
-		Task description - <%= @task.description %>
+		To-do description - <%= @task.description %>
 	</div>
+	<p>Your tasks</p>
+	<ul>
+		<% @todos.each do |task| %>
+		<li>
+			<h3><%= task.name.capitalize %></h3>
+			<% if task.completed %>
+				completed
+			<% else %>	
+				not completed
+			<% end %>	
+		</li>
+		<% end %>
+	</ul>
+
+	<%= link_to "edit", edit_user_task_path %>
 </div>
 
-<%= link_to "edit", edit_user_task_path %>
+
+<script >
+ 
+ var end = Date.now() + (2 * 400);
+ var colors = ['#bb0000', '#FFF222', '#34eb4f', '#2B2B52'];
+ var width = <%= @width %>
+ 
+	if (width==100.0) {
+		(function frame() {
+		  confetti({
+		    particleCount: 10,
+		    angle: 60,
+		    spread: 300,
+		    origin: { x: 0 },
+		    colors: colors
+		  });
+		  confetti({
+		    particleCount: 10,
+		    angle: 120,
+		    spread: 300,
+		    origin: { x: 1 },
+		    colors: colors
+		  });
+
+		  if (Date.now() < end) {
+		    requestAnimationFrame(frame);
+		  }
+		}());
+	}
+
+</script>
+

@@ -1,4 +1,4 @@
-class UserTasksController < ApplicationController
+ class UserTasksController < ApplicationController
   before_action :authenticate_user!
   def index
   	@tasks = UserTask.all
@@ -6,7 +6,8 @@ class UserTasksController < ApplicationController
 
   def new
   	@task = UserTask.new
-     @task.todos.build
+    @task.todos.build
+    @quote = Quote.order("RANDOM()").first
   end
 
   def create
@@ -46,6 +47,9 @@ class UserTasksController < ApplicationController
     if @task.todos.exists? == true
       
       @width = @completed.to_f/@total_count * 100
+        if @width==100
+          
+        end 
     else
       @width = 0
     end

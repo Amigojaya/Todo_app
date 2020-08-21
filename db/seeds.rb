@@ -101,5 +101,5 @@ quote = Quote.create([
 						{ quotes: "It’s not your salary that makes you rich, it’s your spending habits", author: "Charles A. Jaffe", status: "approved" },
 						{ quotes: "Never doubt that a small group of thoughtful, committed, citizens can change the world. Indeed, it is the only thing that ever has", author: "Margaret Mead", status: "approved" },
 						{ quotes: "Change is painful, but nothing is as painful as staying stuck somewhere you don’t belong", author: "Mandy Hale", status: "approved" },
-						{ quotes: "Dreams are the seeds of change. Nothing ever grows without a seed, and nothing ever changes without a dream", author: "Debby Boone", status: "approved" },
+						{ quotes: "Dreams are the seeds of change. Nothing ever grows without a seed, and nothing ever changes without a dream", author: "Debby abort_on_exception", status: "approved" },
 					])

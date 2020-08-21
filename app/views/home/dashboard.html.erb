@@ -1,0 +1,36 @@
+Hello world
+</br>
+
+<%= link_to 'pdf', 'daddy.pdf' , download: '' %>
+<%= link_to "download", download_path, target: "_blank"%>
+
+<br>
+<button onclick="frame()">hello dude</button>
+<input  onkeyup="frame()" name="dude">
+<script >
+	var end = Date.now() + (2 * 400);
+
+// go Buckeyes!
+var colors = ['#bb0000', '#ffffff', '#34eb4f', '#34eb4f'];
+
+function frame() {
+  confetti({
+    particleCount: 99,
+    angle: 60,
+    spread: 300,
+    origin: { x: 0 },
+    colors: colors
+  });
+  confetti({
+    particleCount: 99,
+    angle: 120,
+    spread: 300,
+    origin: { x: 1 },
+    colors: colors
+  });
+
+  if (Date.now() < end) {
+    requestAnimationFrame(frame);
+  }
+};
+</script>
