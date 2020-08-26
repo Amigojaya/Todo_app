@@ -33,13 +33,19 @@
 
   <div class="field">
       <%= f.label :subscribe %>
-      <%= f.check_box :subscribe %>
-  </div>
+      <%= f.check_box :subscribe , data: { toggle: "toggle" ,on: "Enabled" ,off: "Disabled" ,onstyle: "success" ,offstyle: "danger" } %>
+  </div> <br>
 
+  <div class="field">
+      <%= f.label :subscribe_quote %>
+      <%= f.check_box :subscribe_quote , data: { toggle: "toggle" ,on: "Enabled" ,off: "Disabled" ,onstyle: "success" ,offstyle: "danger" } %>
+  </div>
+    <input id="toggle-event" type="checkbox" data-toggle="toggle">
   <br>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
+
 <% end %>
 
 <h3>Cancel my account</h3>
@@ -47,3 +53,9 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+
+<style >
+  .toggle-handle {
+  }
+</style>

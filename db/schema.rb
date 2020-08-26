@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_123051) do
+ActiveRecord::Schema.define(version: 2020_08_26_114604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 2020_06_28_123051) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "pending"
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "todos", force: :cascade do |t|
@@ -65,11 +56,11 @@ ActiveRecord::Schema.define(version: 2020_06_28_123051) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "subscribe", default: true
+    t.boolean "subscribe_quote", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "tasks", "users"
   add_foreign_key "todos", "user_tasks"
   add_foreign_key "user_tasks", "users"
 end

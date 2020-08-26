@@ -5,8 +5,8 @@
 	
 	
 	    <%= f.label :completed %>
-	    <%= f.check_box :completed %>
+	    <%= f.check_box :completed %><i class="fas fa-tasks"></i>
 	</div>
-	    <%= link_to_remove_association "Remove ", f, class: "text-danger" %>
+	    <i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger" %>
 	    <hr>
 </div>

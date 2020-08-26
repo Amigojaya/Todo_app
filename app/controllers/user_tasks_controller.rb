@@ -1,7 +1,7 @@
  class UserTasksController < ApplicationController
   before_action :authenticate_user!
   def index
-  	@tasks = UserTask.all
+  	@tasks = current_user.user_tasks
   end
 
   def new
