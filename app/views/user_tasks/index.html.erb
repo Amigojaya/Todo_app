@@ -1,29 +1,36 @@
 <div class="container">
 	<div class="card" >
-  <div class="card-header">
-    <h3><i class="fas fa-tasks"></i> <b> Tasks</b></h3>
-  </div>
-  <ul class="list-group list-group-flush">
+	  <div class="card-header">
+	    <h3><i class="fas fa-tasks"></i> <b> All Tasks</b></h3>
+	  </div>
+	</div>
     
 	<% @tasks.each do |task| %>
-	<li class="list-group-item">
-		<%= task.id %>
-		<%= task.name %>
-		<% if task.todos.where(completed: true).count == task.todos.count %>
-			<span class="badge badge-success">Completed</span>
-		<% elsif task.todos.count != 0 && task.todos.where(completed: true).count > 0 %>
-		    On progress
-		<% else %>
-			Not yet started
-		<% end %>
-	</li>
+		<div class="tasks mt-2 md-3">
+
+			<i class="fal fa-edit"></i> <%= link_to task.name.capitalize, user_task_path(task) %>
+			
+			<% if task.todos.where(completed: true).count == task.todos.count %>
+				<span class="badge badge-success float-right">Completed</span>
+			<% elsif task.todos.count != 0 && task.todos.where(completed: true).count > 0 %>
+			    <span class="badge badge-warning float-right">On progress</span>
+			<% else %>
+				<span class="badge badge-secondary float-right">Not started</span>
+			<% end %>
+		</div>
 	<% end %>
+</div>
+  
 
-  </ul>
+<style >
+	.tasks {
+		background-color: #f1f1f1;
+		border-radius: 8px;
+		padding: 8px 20px 8px 40px;
+		box-shadow: 5px 10px 30px #888888;
+	}
 
-  <style >
-  	.badge {
-  		padding: 8px;
-  		font-size: 13px
-  	}
-  </style>
+	.badge {
+		font-size: 13.4px
+	}
+</style>  
