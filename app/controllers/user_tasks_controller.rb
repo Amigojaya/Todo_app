@@ -1,7 +1,7 @@
  class UserTasksController < ApplicationController
   before_action :authenticate_user!
   def index
-  	@tasks = current_user.user_tasks
+  	@tasks = current_user.user_tasks.order(:id )
   end
 
   def new
@@ -32,6 +32,13 @@
 
   	@task = UserTask.find(params[:id])
   	if @task.update(user_task_params)
+      if @task.todos.where(completed: true).count == @task.todos.count
+        @task.completed = true
+        @task.save
+      else
+        @task.completed = false
+        @task.save
+      end
   		redirect_to user_task_path(@task)
   	else
   		render 'edit'
