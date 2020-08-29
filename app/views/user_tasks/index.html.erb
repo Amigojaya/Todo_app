@@ -1,11 +1,18 @@
+<center>
+	<%= link_to '<i class="fas fa-plus"></i> <b>Create New Todo</b>'.html_safe, new_user_task_path, :class => "btn btn-primary mb-2 color1" %>
+</center>
+
 <div class="container">
 	<div class="row"> 
+
 		<div class="col-lg">
 			<div class="card" >
 			  <div class="card-header">
-			    <h3><i class="fas fa-tasks"></i> <b> All Tasks</b></h3>
+			    <h3><i class="fas fa-tasks"></i> <b> All Todo's</b></h3>
 			  </div>
 			</div>
+
+			
 		    
 			<% @tasks.each do |task| %>
 				<div class="tasks mt-2 md-3">
@@ -42,5 +49,14 @@
 
 	.badge {
 		font-size: 13.4px
+	}
+
+	.color1 {
+		background-color: #BB2CD9;
+		border-color: #BB2CD9 
+	}
+	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+	    background-color: #BB2CD9;
+	    border-color: #BB2CD9; /*set the color you want here*/
 	}
 </style>  

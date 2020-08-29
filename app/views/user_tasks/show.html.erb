@@ -1,41 +1,107 @@
 <div class="container">
 
-	<div class="progress">
+	<div class="progress" style="height: 20px">
 	  <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<%= @width.to_i %>%"></div>
 	</div>
 	<%= @width.to_i %>% completed<br>
 	<center>
 		<% if @completed == @total_count %>
-			All <%= @total_count %> todo's are Completed
+			<% if @completed == 1 %>
+				All Tasks are completed 
+			<% else %>
+			  All <%= @total_count %> Tasks are Completed
+			<% end %>
+
 		<% elsif  @completed == 0 %>
 			<%= @completed %> out of <%= @total_count %> are completed, Remember Every-thing Start from zero.
 		<% else %>
-			<%= @completed %> out of <%= @total_count %> are completed
+			<%= @completed %> out of <%= @total_count %> Task/s are completed
 		<% end %>
 	</center>
 
-	<h1 class="ml-3">Task details </h1>
+	<h1 class="ml-3">Todo - <%= @task.name.capitalize %> </h1>
 	<div>
-		Your To-do name - <%= @task.name %>
-	</div>
-	<div>
-		To-do description - <%= @task.description %>
+		Description - <%= @task.description %>
 	</div>
 	<p>Your tasks</p>
-	<ul>
+		<% num = 0 %>
 		<% @todos.each do |task| %>
-		<li>
-			<h3><%= task.name.capitalize %></h3>
+			<% num +=1 %>
+			<%= num %>. <%= task.name.capitalize %>
 			<% if task.completed %>
 				completed
 			<% else %>	
 				not completed
 			<% end %>	
-		</li>
+			<br>
 		<% end %>
-	</ul>
+	
 
-	<%= link_to "edit", edit_user_task_path %>
+	<%= link_to "Edit", edit_user_task_path , :class => "btn btn-lg btn-secondary", "data-toggle" => "modal" , "data-target" => "#exampleModalLong" %>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+			<div class="container">
+
+				<%= form_for @task do |form| %>
+			    <% if @task.errors.any? %>
+			      <div id="error_explanation">
+			        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this Task from being saved:</h2>
+
+			        <ul>
+			          <% @task.errors.full_messages.each do |message| %>
+			            <li><%= message %></li>
+			          <% end %>
+			        </ul>
+			      </div>
+			    <% end %>
+
+			    <div class="field">
+			      <%= form.label :name %>
+			      <%= form.text_field :name, class: 'form-control' %>
+			    </div>
+
+			    <div class="field">
+			      <%= form.label :description %>
+			      <%= form.text_field :description, class: 'form-control' %>
+			    </div>
+
+			    <%= form.hidden_field :user_id, value: current_user.id %>
+
+			    <h3>Add todo-lists</h3>
+			    <%= form.fields_for :todos do |todo| %>
+			      <%= render 'todo_fields', f: todo %>
+			    <% end %>
+			    <div class="links">
+			    <%= link_to_add_association "add todo", form, :todos %>
+			    </div>
+
+			   <!--  <div class="actions">
+			      <%= form.submit "Update", class: "btn btn-success btn-block mt-3" %>
+			    </div> -->
+			  
+			</div>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= form.submit "Update", class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 
