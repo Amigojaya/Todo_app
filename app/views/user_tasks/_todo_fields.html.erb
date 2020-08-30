@@ -1,12 +1,36 @@
 <div class="nested-fields">
 	<div class="field">
-	    <%= f.label :task_name %> :
-	    <%= f.text_field :name %><br>
-	
-	
-	    <%= f.label :completed %>
-	    <%= f.check_box :completed %><i class="fas fa-tasks"></i>
-	</div>
+		<div class="animation">
+		    <%= f.text_field :name , onblur: "magic()" , class: "effect-3" , placeholder: "Placeholder Text" %>
+		    <span class="focus-border"></span>
+			
+	    </div>
+		    <%= f.label :completed %>
+		    <%= f.check_box :completed , id: "completed" , onclick: "magic()" %>
 	    <i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger" %>
-	    <hr>
+	</div>
 </div>
+<hr>
+
+<style>
+	input:focus{outline: none; color: red}
+
+	.animation{ width: 27.33%; position: relative;} /* necessary to give position: relative to parent. */
+
+	.effect-1, 
+	.effect-2, 
+	.effect-3{border: 0; padding: 7px 0; border-bottom: 1px solid #ccc;}
+
+
+	.effect-3 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; z-index: 99;}
+	.effect-3 ~ .focus-border:before, 
+	.effect-3 ~ .focus-border:after{content: ""; position: absolute; bottom: 0; left: 0; width: 0; height: 100%; background-color: #3399FF; transition: 0.4s;}
+	.effect-3 ~ .focus-border:after{left: auto; right: 0;}
+	.effect-3:focus ~ .focus-border:before, 
+	.effect-3:focus ~ .focus-border:after{width: 50%; transition: 0.4s;}
+
+	#completed {
+	    transform: scale(2.0);
+	    -webkit-transform: scale(2.0);
+	}
+</style>
