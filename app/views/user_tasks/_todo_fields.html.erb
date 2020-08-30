@@ -1,13 +1,27 @@
 <div class="nested-fields">
 	<div class="field">
 		<div class="animation">
-		    <%= f.text_field :name , onblur: "magic()" , class: "effect-3" , placeholder: "Placeholder Text" %>
-		    <span class="focus-border"></span>
-			
-	    </div>
-		    <%= f.label :completed %>
-		    <%= f.check_box :completed , id: "completed" , onclick: "magic()" %>
-	    <i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger" %>
+			<% if action_name == "show" %>
+
+
+				    <%= f.text_field :name , onblur: "magic()" , class: "effect-3" , placeholder: "Placeholder Text" %>
+				    <span class="focus-border"></span>
+					
+			    </div>
+				    <%= f.label :completed %>
+				    <%= f.check_box :completed , id: "completed" , onclick: "magic()" %>
+			    <i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger", onclick: "fundel()" %>
+	    	<% else %>
+
+	    		<%= f.text_field :name  , class: "effect-3" , placeholder: "Placeholder Text" %>
+				    <span class="focus-border"></span>
+					
+			    </div>
+				    <%= f.label :completed %>
+				    <%= f.check_box :completed  %>
+			    <i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger" %>
+
+	    	<% end %>
 	</div>
 </div>
 <hr>
