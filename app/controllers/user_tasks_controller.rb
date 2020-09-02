@@ -46,6 +46,12 @@
 
   end
 
+  def destroy
+      @task = current_user.user_tasks.find(params[:id])
+      @task.destroy
+      redirect_to user_tasks_path 
+  end
+
   def show
   	@task = current_user.user_tasks.find(params[:id])
     @todos = @task.todos

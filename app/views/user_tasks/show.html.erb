@@ -1,15 +1,14 @@
 <div class="container">
 
 	<div class="progress" style="height: 20px">
-	  <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<%= @width.to_i %>%"></div>
+	  <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" id="test" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:<%= @width.to_i %>%"><%= @width.to_i %> %</div>
 	</div>
-	<%= @width.to_i %>% completed<br>
 	<center>
 		<% if @completed == @total_count %>
 			<% if @completed == 1 %>
-				All Tasks are completed 
+				<span class="descriptive">All Tasks are completed</span> 
 			<% else %>
-			  All <%= @total_count %> Tasks are Completed
+			  <span class="descriptive">All <%= @total_count %> Tasks are Completed</span>
 			<% end %>
 
 		<% elsif  @completed == 0 %>
@@ -19,31 +18,28 @@
 		<% end %>
 	</center>
 
-	<h1 class="ml-3">Todo - <%= @task.name.capitalize %> </h1>
+	<h2 class="ml-3">Todo - <%= @task.name.capitalize %> </h2>
 	<div>
-		Description - <%= @task.description %>
+		Description - <%= @task.description.capitalize %>
 	</div>
-	<p>Your tasks</p>
-		
 	
-	<%= link_to "edit good", edit_user_task_path %><br>
-	<button class="btn btn-warning" onclick="task()">Add Task</button>
+	<center>
+		<div class="mb-4">
+			<%= link_to "Edit", edit_user_task_path , class: "btn btn-primary mr-2 " %>
+			<button class="btn btn-warning" onclick="task()">Add Task</button>
+		</div>
+	</center>
 
-
-<br>
-<br>
-<br>
 	
 	<%= form_for @task do |form| %>
 
 	    <%= form.hidden_field :user_id, value: current_user.id %>
-
-	    <h3>Add todo-lists</h3>
 	    <%= form.fields_for :todos do |todo| %>
 	      <%= render 'todo_fields', f: todo %>
 	    <% end %>
+
 	    <div class="links" id="scrolll">
-	    <%= link_to_add_association "Add Task", form, :todos , id: "task1" %>
+	    <%= link_to_add_association "Add Task", form, :todos , id: "task1" , style: "display: none" %>
 	    </div>
 
 	    <div class="actions">
@@ -53,12 +49,6 @@
 
 </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 
 <script >
@@ -105,4 +95,14 @@
 	}
 
 </script>
+
+<style>
+	.descriptive {
+		font-size: 19px;
+	}
+</style>
+
+
+
+
 

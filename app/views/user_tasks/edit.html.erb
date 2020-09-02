@@ -1,5 +1,7 @@
 <div class="container">
 
+  <h3 class="mb-3">Edit - <%= @task.name.capitalize %></h3>
+
 	<%= form_for @task do |form| %>
     <% if @task.errors.any? %>
       <div id="error_explanation">
@@ -13,29 +15,58 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name, class: 'form-control' %>
+    <div class="row">
+      <div class="field col-12 col-lg-9">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="col-lg-3"></div>
     </div>
 
-    <div class="field">
-      <%= form.label :description %>
-      <%= form.text_field :description, class: 'form-control' %>
+    <div class="row">
+      <div class="field col-12 col-lg-9">
+        <%= form.label :description %>
+        <%= form.text_field :description, class: 'form-control' %>
+      </div>
+      <div class="col-lg-3"></div>
     </div>
 
     <%= form.hidden_field :user_id, value: current_user.id %>
 
-    <h3>Add todo-lists</h3>
+    <h4 class="mt-2 mb-2">Add Task/s</h4>
     <%= form.fields_for :todos do |todo| %>
       <%= render 'todo_fields', f: todo %>
     <% end %>
     <div class="links">
-    <%= link_to_add_association "add todo", form, :todos %>
+    <%= link_to_add_association "Add Task", form, :todos %>
     </div>
 
-    <div class="actions">
-      <%= form.submit "Update", class: "btn btn-success btn-block mt-3", id: "update1" %>
+    <div class="actions text-center">
+      <%= form.submit "Update", class: "btn btn-success mt-3", id: "update1" %> 
+      <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#exampleModal">Delete this Todo
+      </button>
     </div>
   <% end %>
+
+    <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-danger">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Delete</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure to delete <span><b><%= @task.name.capitalize %></b></span> ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= link_to "Delete" , user_task_path(@task), method: :delete, class: "btn btn-danger" %>
+              </div>
+            </div>
+          </div>
+        </div>
 
 </div>

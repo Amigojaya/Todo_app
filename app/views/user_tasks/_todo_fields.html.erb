@@ -1,50 +1,108 @@
 <div class="nested-fields">
-	<div class="field">
-		<div class="animation">
+	<div class="row field">
+		<div class="col-12 col-lg-6 col-md-8 animation">
 			<% if action_name == "show" %>
-
-
-				    <%= f.text_field :name , onblur: "magic()" , class: "effect-3" , placeholder: "Placeholder Text" %>
+					
+				    <i class="far fa-stream"></i> <%= f.text_field :name , onblur: "magic()" , class: "effect-3" , placeholder: "Please enter you Task" %>
 				    <span class="focus-border"></span>
 					
 			    </div>
-				    <%= f.label :completed %>
-				    <%= f.check_box :completed , id: "completed" , onclick: "magic()" %>
-			    <i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger", onclick: "fundel()" %>
+			    <div class="col-8 col-lg-6 col-md-4 animation float-right">
+				    
+				    <%= f.label :completed , class: "mr-1 comp" %>
+				    
+				    <div class="pretty p-icon p-smooth" id="pretty-scale-test">
+				        <%= f.check_box :completed , id: "completed" , onclick: "magic()", class: "mr-2" %>
+				        <div class="state p-success">
+				            <i class="icon fa fa-check"></i>
+				            <label></label>
+				        </div>
+				    </div>
+			    	<i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger", onclick: "fundel()" %>
+				</div>
 	    	<% else %>
 
-	    		<%= f.text_field :name  , class: "effect-3" , placeholder: "Placeholder Text" %>
+	    		<i class="far fa-stream"></i> <%= f.text_field :name  , class: "effect-3" , placeholder: "Please enter you Task" %>
 				    <span class="focus-border"></span>
 					
 			    </div>
+			    <div class="col-8 col-lg-6 col-md-4 animation float-right">
 				    <%= f.label :completed %>
-				    <%= f.check_box :completed  %>
-			    <i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger" %>
-
+				    <div class="pretty p-icon p-smooth" id="pretty-scale-test">
+				        <%= f.check_box :completed , id: "completed", class: "mr-2" %>
+				        <div class="state p-success">
+				            <i class="icon fa fa-check"></i>
+				            <label></label>
+				        </div>
+				    </div>
+			    	<i class="fas fa-trash" style="color:red"></i><%= link_to_remove_association "Delete", f, class: "text-danger" %>
+			    </div>
 	    	<% end %>
 	</div>
-</div>
-<hr>
+</div>	
+
 
 <style>
 	input:focus{outline: none; color: red}
+	input {
+		text-transform: capitalize
+	}
 
-	.animation{ width: 27.33%; position: relative;} /* necessary to give position: relative to parent. */
-
-	.effect-1, 
-	.effect-2, 
+	.animation{float: left; width: 27.33%; margin-bottom: 10px; position: relative;} /* necessary to give position: relative to parent. */
+ 
 	.effect-3{border: 0; padding: 7px 0; border-bottom: 1px solid #ccc;}
 
 
 	.effect-3 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; z-index: 99;}
+
 	.effect-3 ~ .focus-border:before, 
 	.effect-3 ~ .focus-border:after{content: ""; position: absolute; bottom: 0; left: 0; width: 0; height: 100%; background-color: #3399FF; transition: 0.4s;}
+
+		/*For Phone*/
+		@media (max-width: 599px) { 
+
+			.effect-3 {
+				width: 100%
+			}
+        } 
+          
+        /*For Tablet*/    
+       	@media (min-width:600px) {
+       		.effect-3 {
+				width: 90%
+			}	
+       	}
+           
+        @media (min-width: 801){ 
+			.effect-3 {
+				width: 90%
+			}
+
+        } 
+ 		
+ 		/*For Pc*/
+        @media (min-width: 1281px) { 
+
+            .effect-3 ~ .focus-border:before, 
+			.effect-3 ~ .focus-border:after{content: ""; position: absolute; bottom: 0; left: 0; width: 0; height: 100%; background-color: #3399FF; transition: 0.4s;}
+			.effect-3 {
+				width: 90%
+			}
+        } 
+
+	
 	.effect-3 ~ .focus-border:after{left: auto; right: 0;}
 	.effect-3:focus ~ .focus-border:before, 
 	.effect-3:focus ~ .focus-border:after{width: 50%; transition: 0.4s;}
 
-	#completed {
-	    transform: scale(2.0);
-	    -webkit-transform: scale(2.0);
+	
+
+	#pretty-scale-test {
+		font-size: 19px
 	}
+
+	.pretty {
+		margin-right: 0;
+	}
+
 </style>
