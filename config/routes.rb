@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'home#dashboard', as: 'dashboard'
 
+  get 'manage', to: 'user_tasks#manage', as: 'manage'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   match 'download', to: 'home#download_pdf', as: 'download', via: :get

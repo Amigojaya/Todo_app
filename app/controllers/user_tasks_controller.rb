@@ -2,6 +2,7 @@
   before_action :authenticate_user!
   def index
   	@tasks = current_user.user_tasks.order(:id )
+    @quote = Quote.order("RANDOM()").first
   end
 
   def new
@@ -50,6 +51,10 @@
       @task = current_user.user_tasks.find(params[:id])
       @task.destroy
       redirect_to user_tasks_path 
+  end
+
+  def manage
+    @tasks = current_user.user_tasks.order(:id )
   end
 
   def show

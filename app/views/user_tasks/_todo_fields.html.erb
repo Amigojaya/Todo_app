@@ -3,7 +3,7 @@
 		<div class="col-12 col-lg-6 col-md-8 animation">
 			<% if action_name == "show" %>
 					
-				    <i class="far fa-stream"></i> <%= f.text_field :name , onblur: "magic()" , class: "effect-3" , placeholder: "Please enter you Task" %>
+				    <i class="far fa-stream" style="color: #E74292"></i> <%= f.text_field :name , onblur: "magic()" , class: "effect-3" , placeholder: "Please enter you Task" %>
 				    <span class="focus-border"></span>
 					
 			    </div>
@@ -22,7 +22,7 @@
 				</div>
 	    	<% else %>
 
-	    		<i class="far fa-stream"></i> <%= f.text_field :name  , class: "effect-3" , placeholder: "Please enter you Task" %>
+	    		<i class="far fa-stream"></i> <%= f.text_field :name  , class: "effect-3" , placeholder: "Please enter you Task", style: "color: blue" %>
 				    <span class="focus-border"></span>
 					
 			    </div>
@@ -43,9 +43,10 @@
 
 
 <style>
-	input:focus{outline: none; color: red}
+	input:focus{outline: none; color: #0A79DF}
 	input {
-		text-transform: capitalize
+		text-transform: capitalize;
+		color: #FF3031;
 	}
 
 	.animation{float: left; width: 27.33%; margin-bottom: 10px; position: relative;} /* necessary to give position: relative to parent. */

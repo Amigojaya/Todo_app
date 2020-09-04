@@ -1,6 +1,12 @@
-<% @quotes.each do |q| %>
-		Quote - <%= q.quotes %><br>
-		Author - <%= q.author %><br>
-		<%= link_to "Delete",  quotes_path(q), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger ml-2" %>
-		 <hr>
-<% end %>
+<div>
+	<center>
+		<%= link_to "Submit Your Quote", new_quote_path, class: "btn btn-info " %>
+	</center>
+</div>
+<div>
+	<% @random.each do |q| %>
+			Quote - <%= q.quotes %><br>
+			Author - <%= q.author %><br>
+			 <hr>
+	<% end %>
+</div>

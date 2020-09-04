@@ -19,13 +19,15 @@
       <%= form.text_area :quotes, class: 'form-control' %>
     </div>
 
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
     <div class="field">
       <%= form.label :author %>
-      <%= form.text_field :author, class: 'form-control' %>
+      <%= form.text_field :author, class: 'form-control', placeholder: "Author name only please" %>
     </div>
 
     <div class="actions">
-      <%= form.submit "Create", class: "btn btn-success btn-block mt-3" %>
+      <%= form.submit "Submit", class: "btn btn-success btn-block mt-3" %>
     </div>
 
     <% end %>

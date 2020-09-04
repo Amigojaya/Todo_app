@@ -1,19 +1,16 @@
 <center>
-	<%= link_to '<i class="fas fa-plus"></i> <b>Create New Todo</b>'.html_safe, new_user_task_path, :class => "btn btn-primary mb-2 color1" %>
+	<%= link_to '<i class="fas fa-plus"></i> <b>Create New Todo</b>'.html_safe, new_user_task_path, :class => "btn btn-primary mb-3 color1" %>
 </center>
 
 <div class="container">
 	<div class="row"> 
 
-		<div class="col-lg mb-4">
+		<div class="col-lg-6 col-12 col-sm-6 mb-4">
 			<div class="card" >
 			  <div class="card-header">
 			    <h3><i class="fas fa-tasks"></i> <b> All Todo's</b></h3>
 			  </div>
 			</div>
-
-			
-		    
 			<% @tasks.each do |task| %>
 				<div class="tasks mt-2 md-3">
 
@@ -30,10 +27,23 @@
 			<% end %>
 		</div>
 
-		<div class="col-lg">
-			Testing , Total no of tasks - <%= current_user.user_tasks.count %><br>
-			no of tasks completed - <%= current_user.user_tasks.where(completed: true).count %> <br>
-			<canvas id="myChart" width="300" height="200"></canvas>
+		<div class="col-lg-6 col-12 col-sm-6">
+			<canvas id="myChart" width="300" height="180"></canvas>
+			<div class="text-center">
+				<!-- Total no of Todos - <%= current_user.user_tasks.count %><br> -->
+				No of Todo's Completed - <b><%= current_user.user_tasks.where(completed: true).count %></b> <br>
+				No of Todo's in Pending - <b><%= current_user.user_tasks.count - current_user.user_tasks.where(completed: true).count %></b> <br>
+			</div>
+			<div class="chill mt-4">
+			 <blockquote class="blockquote blockquote-custom bg-white pt-5 pb-4 pl-5 pr-3 shadow rounded"  >
+                    <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+                    <div class="blockquote-header"><h4 style="margin-left: -10px">MOTIVATE YOUR SELF</h4></div>
+                    <p class="mb-0 mt-2  ml-1"><%= @quote.quotes.capitalize %></p>
+                    <footer class="blockquote-footer mt-2 mb-1 ml-4">By
+                        <cite title="Source Title"><%= @quote.author %></cite> <span class="float-right mr-3"><%= link_to "All Quotes", user_tasks_path , class: "btn btn-sm btn-success" %></span>
+                    </footer>
+                </blockquote>
+                </div>
 		</div>
 
 	</div>
@@ -60,6 +70,49 @@
 	    background-color: #BB2CD9;
 	    border-color: #BB2CD9; /*set the color you want here*/
 	}
+
+	.blockquote-custom {
+	  position: relative;
+	  font-size: 1.1rem;
+	}
+
+	.blockquote-custom-icon {
+	  width: 50px;
+	  height: 50px;
+	  border-radius: 50%;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  position: absolute;
+	  top: -25px;
+	  left: 50px;
+	}
+
+
+	/*For Phone*/
+		@media (max-width: 599px) { 
+			
+		}
+          
+        /*For Tablet*/    
+       	@media (min-width:600px) {
+       		
+        }
+
+        @media (min-width: 801){ 
+			
+
+        } 
+ 		
+ 		/*For Pc*/
+        @media (min-width: 1281px) { 
+        	.chill {
+			  height: 50%;
+			  width: 60%;
+			  margin: auto;
+			} 
+            
+        }
 </style>  
 
 <script >
@@ -71,19 +124,19 @@
 	var myChart = new Chart(ctx, {
 	    type: 'horizontalBar',
 	    data: {
-	        labels: [ 'Total', 'Completed', 'Pending'],
+	        labels: [ 'Completed',  'Pending', 'Total'],
 	        datasets: [{
 	            label: "of Todo's",
-	            data: [total, completed, notcompleted],
+	            data: [ completed, notcompleted, total],
 	            backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(75, 192, 192, 0.2)',
-	                'rgba(255, 206, 86, 0.2)'
+	                'rgba(127, 255, 0, 0.2)',
+	                'rgba(255, 206, 86, 0.2)',
+	                'rgba(0,191,255, 0.2)'
 	            ],
 	            borderColor: [
-	                'rgba(255, 99, 132, 1)',
-	                'rgba(75, 192, 192, 1)',
-	                'rgba(255, 206, 86, 1)'
+	                'rgba(127,255,0, 1)',
+	                'rgba(255, 206, 86, 1)',
+	                'rgba(0,191,255, 1)'
 	            ],
 	            borderWidth: 2
 	        }]

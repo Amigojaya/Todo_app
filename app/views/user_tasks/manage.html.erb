@@ -1,0 +1,66 @@
+<div class="scrollmenu overflowTest">
+	<div class="horizontal-scrollable">
+	<table class="table table-striped ">
+	  <thead>
+	    <tr>
+	      <th scope="col"><center>Todo's(<%= current_user.user_tasks.count %>)</center></th>
+	      <th scope="col"><center>Details</center></th>
+	      <th scope="col">Created </th>
+	      <th scope="col">Actions</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @tasks.each do |task| %>
+		    <tr>
+		      <td><center><%= link_to task.name, user_task_path(task)  %></center></td>
+		      <td><center><% percent = task.todos.where(completed: true).count.to_f/task.todos.count  * 100 %> <%= percent.to_i %> % completed</center></td>
+		      <td><%= task.created_at.strftime("%B %e, %Y") %></td>
+		      <td>
+		      	
+		      	<strong><%= link_to "Edit", edit_user_task_path(task) %></strong>
+
+		      	<strong>
+		      		<a class="text-danger" 
+	         data-toggle="modal" data-target="#exampleModal<%= task.id %>">
+	     		Delete</a>
+	    		</strong>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal<%= task.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header bg-danger">
+					        <h5 class="modal-title text-white" id="exampleModalLongTitle">Delete</h5>
+					        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        Are you sure to delete <span class="text-danger"><strong><%= task.name.capitalize %></strong></span> Todo?
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <%= link_to "Delete" , task, method: :delete, class: "btn btn-danger" %>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</td>
+		    </tr>
+	  	<% end %>
+	  </tbody>
+	</table>
+</div>
+</div>
+
+<style >
+	div.scrollmenu {
+	  overflow: auto;
+	  white-space: nowrap;
+	}
+
+	/*.overflowTest {
+	  height: 600px;
+	  overflow: scroll;
+	}*/
+</style>

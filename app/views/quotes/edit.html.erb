@@ -1,2 +1,34 @@
-<h1>Quotes#edit</h1>
-<p>Find me in app/views/quotes/edit.html.erb</p>
+<div class="container">
+
+	<%= form_for @quote do |form| %>
+    <% if @quote.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@quote.errors.count, "error") %> prohibited this Task from being saved:</h2>
+
+        <ul>
+          <% @quote.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= form.label :quote %>
+      <%= form.text_area :quotes, class: 'form-control' %>
+    </div>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <div class="field">
+      <%= form.label :author %>
+      <%= form.text_field :author, class: 'form-control', placeholder: "Author name only please" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Update", class: "btn btn-success btn-block mt-3" %>
+    </div>
+
+    <% end %>
+</div>
