@@ -1,12 +1,13 @@
-<div>
+<div class="container">
+	<h2 class="ml-3">All <%= @quotes.count %> QUOTES</h2>
 	<center>
-		<%= link_to "Submit Your Quote", new_quote_path, class: "btn btn-info " %>
+		<%= link_to '<i class="fas fa-plus"></i> <b>Submit Your Quote</b>'.html_safe, new_quote_path, class: "btn btn-info mb-3" %>
 	</center>
-</div>
-<div>
-	<% @random.each do |q| %>
-			Quote - <%= q.quotes %><br>
-			Author - <%= q.author %><br>
-			 <hr>
+	<% num = 0 %>
+	<% @quotes.each do |quotes| %>
+	<% num +=1 %>
+	<%= num %>.
+	<%= quotes.quotes %><br>
+	<%= quotes.author %><hr>
 	<% end %>
 </div>

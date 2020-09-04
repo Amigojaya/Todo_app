@@ -1,0 +1,148 @@
+<div class="container">
+	<center>
+		<%= link_to '<i class="fas fa-plus"></i> <b>Submit Your Quote</b>'.html_safe, new_quote_path, class: "btn btn-info mb-3" %>
+	</center>
+	<div class="row">
+	<div class="col-lg-6 mb-4">
+		<div class="card" >
+  		<div class="card-header"><h4 class="text-center">Quotes, which you Submitted</h4></div>
+		<table class="table">
+		  <thead class="thead-light">
+		    <tr>
+		      <th scope="col">Quote <small class="text-muted">( Click to view )</small></th>
+		      <th scope="col">Status</th>
+		      <th scope="col">Actions</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			<% @pending.each do |pending| %>
+		  		<tr>
+			      <td><a class="text-primary" data-toggle="modal" data-target="#ModalView<%= pending.id %>"><%= pending.quotes.capitalize.truncate(18) %></a></td>
+			      <td>
+			      	<% if pending.status == "pending" %>
+			      		<span class="badge badge-warning p-2">Pending</span>
+			      	<% elsif pending.status == "approved" %>
+			      		<span class="badge badge-success p-2">Approved</span>
+			      	<% else %>
+			      		<span class="badge badge-danger p-2">Rejected</span>
+			      	<% end %>
+			      </td>
+			      	<td>
+			      		<% if pending.status == "pending" %>
+				      	<a class="text-primary" data-toggle="modal" data-target="#ModalEdit<%= pending.id %>">Edit </a> <a class="text-danger" data-toggle="modal" data-target="#ModalDelete<%= pending.id %>">
+						  Delete
+						</a> 
+			      	<% else %>
+			      		<i class="fal fa-minus-circle"></i> None
+			      	<% end %>	
+
+					<!-- Modal for View -->
+					<div class="modal fade" id="ModalView<%= pending.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header bg-info">
+					        <h5 class="modal-title text-white" id="exampleModalLongTitle">View Your QUOTE</h5>
+					        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        <b>Author: </b> <%= pending.author.capitalize %><br>
+					        <b>Quote : </b> <%= pending.quotes.capitalize %>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+			      		<!-- Modal for Edit -->
+						<div class="modal fade" id="ModalEdit<%= pending.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header bg-primary">
+						        <h5 class="modal-title text-white" id="exampleModalCenterTitle"><i class="fas fa-pen-square"></i> Edit your Quote</h5>
+						        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <%= form_for pending do |form| %>
+
+							    <div class="field">
+							      <b>Quote</b>
+							      <%= form.text_area :quotes, class: 'form-control' %>
+							    </div>
+
+							    <%= form.hidden_field :user_id, value: current_user.id %>
+
+							    <div class="field">
+							      <b>Author</b>
+							      <%= form.text_field :author, class: 'form-control', placeholder: "Author name only please" %>
+							    </div>
+
+							    <% if current_user.admin %>
+								    <div class="field mt-3">
+								    	<%= form.select :status, ['pending','approved', 'reject'], class: "form-control"%>
+								    </div>
+							    <% end %>
+
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <%= form.submit "Update", class: "btn btn-success" %>
+						        <% end %>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+
+						<!-- Modal -->
+									<div class="modal fade" id="ModalDelete<%= pending.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-dialog-centered" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header bg-danger">
+									        <h5 class="modal-title text-white" id="exampleModalLongTitle"><i class="fas fa-trash"></i> Delete</h5>
+									        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <div class="modal-body">
+									        Are you sure to delete <span class="text-danger"><strong><%= pending.quotes %></strong></span> ?
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									        <%= link_to "Delete" , pending, method: :delete, class: "btn btn-danger" %>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+						<% end %>
+				  </td>
+			    </tr>
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+	<div class="col-lg-6">
+		<div class="card">
+		  <div class="card-header">
+		    <h4>These are random 5 Quotes</h4> 
+		    <%= link_to @filter , quotes_path , class: "btn btn-sm btn-danger" %>
+		  </div>
+		  <div class="card-body">
+		  	<% @random.each do |random| %>
+		  	<blockquote class="blockquote mb-0">
+		      <p><%= random.quotes.capitalize %></p>
+		      <footer class="blockquote-footer"><cite title="Source Title"><%= random.author.capitalize %></cite></footer>
+		    </blockquote><hr>
+		  	<% end %>
+		  </div>
+		</div>
+	</div>
+</div> <!-- row end -->
+
+</div>

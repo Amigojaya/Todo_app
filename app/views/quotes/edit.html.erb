@@ -19,12 +19,22 @@
       <%= form.text_area :quotes, class: 'form-control' %>
     </div>
 
-    <%= form.hidden_field :user_id, value: current_user.id %>
+    <% if current_user.admin %>
+      <%= form.hidden_field :user_id %>
+    <% else %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    <% end %>
 
     <div class="field">
       <%= form.label :author %>
       <%= form.text_field :author, class: 'form-control', placeholder: "Author name only please" %>
     </div>
+
+    <% if current_user.admin %>
+	    <div class="field mt-3">
+	    	<%= form.select :status, ['pending','approved', 'reject'], class: "form-control"%>
+	    </div>
+    <% end %>
 
     <div class="actions">
       <%= form.submit "Update", class: "btn btn-success btn-block mt-3" %>

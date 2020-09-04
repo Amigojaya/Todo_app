@@ -1,0 +1,18 @@
+<div class="container">
+	<div >
+		<h1>Pending quotes submited by users ( <%= @pending.count %> ) </h1>
+		<% @pending.each do |pending| %>
+			<%= pending.quotes %><br>
+			<%= link_to "Edit" , edit_quote_path(pending) %>
+			<%=  link_to "Delete", quote_path(pending), method: :delete, class: "text-danger" %><hr>
+		<% end %>
+	</div>
+	<div>
+		<h1>All quotes</h1>
+		<% @quotes.each do |quote| %>
+		<%= quote.quotes %><br>
+		<%= link_to "Edit" , edit_quote_path(quote) %>
+		<%=  link_to "Delete", quote_path(quote), method: :delete, class: "text-danger" %><hr>
+		<% end %>
+	</div>
+</div>
