@@ -11,14 +11,21 @@ class QuotesController < ApplicationController
 
   def user
     @random = Quote.order("RANDOM()").where(status: "approved").limit(6)
-    @pending = current_user.quotes.order(:id)
+    if current_user.admin
+      @pending = current_user.quotes.where(status: "pending").order(:id)
+    else
+      @pending = current_user.quotes.order(:id)
+    end
     @count_approve = Quote.all.where(status: "approved").count.to_s
     @filter = "Click to view all " + @count_approve + " Quotes"
   end
 
   def create
     @quote = Quote.create(quote_params_good)
-    if @quote.save 
+    if @quote.save
+      if !current_user.admin
+        TestMailer.alert_admin(current_user, @quote).deliver_now 
+      end
       redirect_to root_path
     else
       render 'new'
@@ -44,7 +51,7 @@ class QuotesController < ApplicationController
 
   def update
     @quote = Quote.find(params[:id])
-    if @quote.update(quote_params_good)
+    if @quote.update(admin_edit)
       redirect_to root_path
     else
       render 'edit'
@@ -65,5 +72,8 @@ class QuotesController < ApplicationController
 
   def quote_params_good
     params.require(:quote).permit(:quotes, :author, :user_id, :status)
+  end
+  def admin_edit
+    params.require(:quote).permit(:quotes, :author, :status)
   end
 end

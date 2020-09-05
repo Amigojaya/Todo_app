@@ -19,11 +19,6 @@
       <%= form.text_area :quotes, class: 'form-control' %>
     </div>
 
-    <% if current_user.admin %>
-      <%= form.hidden_field :user_id %>
-    <% else %>
-      <%= form.hidden_field :user_id, value: current_user.id %>
-    <% end %>
 
     <div class="field">
       <%= form.label :author %>

@@ -33,7 +33,7 @@ quote = Quote.create([
 						{ quotes: "Because of your smile, you make life more beautiful", author: "Thich Nhat Hanh", status: "approved" },
 						{ quotes: "A simple smile. That’s the start of opening your heart and being compassionate to others", author: "Dalai Lama", status: "approved" },
 						{ quotes: "If you’re reading this… Congratulations, you’re alive. If that’s not something to smile about, then I don’t know what is", author: "Chad Sugg", status: "approved" },
-						{ quotes: "A gentle word, a kind look, a good-natured smile can work wonders and accomplish miracles", author: "A gentle word, a kind look, a good-natured smile can work wonders and accomplish miracles", status: "approved" },
+						{ quotes: "A gentle word, a kind look, a good-natured smile can work wonders and accomplish miracles", author: "William Hazlitt", status: "approved" },
 						{ quotes: "Smiling is definitely one of the best beauty remedies. If you have a good sense of humor and a good approach to life, that’s beautiful", author: "Rashida Jones", status: "approved" },
 						{ quotes: "A room without books is like a body without a soul", author: "Marcus Tullius Cicero", status: "approved" },
 						{ quotes: "You only live once, but if you do it right, once is enough", author: "Mae West", status: "approved" },

@@ -17,4 +17,11 @@ class TestMailer < ApplicationMailer
 		make_bootstrap_mail(to: @user.email, subject: "Test mail")
 	end
 
+	def alert_admin(user, quote)
+		@quote = quote
+		@user = user 
+
+		make_bootstrap_mail(to: "moulijaya@gmail.com", subject: "Approve Quote")
+	end
+
 end

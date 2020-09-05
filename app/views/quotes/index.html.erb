@@ -1,13 +1,37 @@
 <div class="container">
-	<h2 class="ml-3">All <%= @quotes.count %> QUOTES</h2>
+	<h2 class="ml-3">Total <%= @quotes.count %> QUOTES</h2>
 	<center>
 		<%= link_to '<i class="fas fa-plus"></i> <b>Submit Your Quote</b>'.html_safe, new_quote_path, class: "btn btn-info mb-3" %>
 	</center>
+	<% color = ["primary", "danger", "success", "warning"] %>
 	<% num = 0 %>
 	<% @quotes.each do |quotes| %>
-	<% num +=1 %>
-	<%= num %>.
-	<%= quotes.quotes %><br>
-	<%= quotes.author %><hr>
+		<% shuff = color.shuffle.first %>
+		<% if shuff == "primary" %>
+			<% shawcol = "rgb(0,123,255)" %>			
+		<% elsif shuff ==  "danger" %>
+			<% shawcol = "rgb(220,53,69)" %>
+		<% elsif shuff == "success" %>
+			<% shawcol = "rgb(40,167,69)" %>
+		<% elsif shuff == "warning" %>
+			<% shawcol = "rgb(255,193,7)" %>
+		<% end %>
+		<% num +=1 %>
+		<div class="card mb-3 border-<%= shuff %> rounded1" style="box-shadow:   13px 34px 73px -36px <%= shawcol %>">
+		  <div class="card-body">
+		    <blockquote class="blockquote mb-0 text-right">
+		      <p><%= num %> . <b><%= quotes.quotes %></b></p>
+		      <footer class="blockquote-footer"><cite title="Source Title"><%= quotes.author %></cite></footer>
+		    </blockquote>
+		  </div>
+		  <div class="card-footer border-secondary">
+		  	<span>
+		    Posted by : <% if !quotes.user.admin %>
+		    	<%= quotes.user.email.capitalize %>
+		    <% elsif %>
+		    	Admin
+		    <% end %></span>
+		  </div>
+		</div>
 	<% end %>
 </div>
