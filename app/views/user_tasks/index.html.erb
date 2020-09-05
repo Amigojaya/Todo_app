@@ -39,7 +39,7 @@
                     <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
                     <div class="blockquote-header"><h4 style="margin-left: -10px">MOTIVATE YOUR SELF</h4></div>
                     <p class="mb-0 mt-2  ml-1"><%= @quote.quotes.capitalize %></p>
-                    <footer class="blockquote-footer mt-2 mb-1 ml-4">By
+                    <footer class="blockquote-footer mt-2 mb-1 ml-2">
                         <cite title="Source Title"><%= @quote.author %></cite> <span class="float-right mr-3">
                         	<% if current_user.admin %>
                         	<%= link_to "All Quotes", admin_quote_path , class: "btn btn-sm btn-success" %>

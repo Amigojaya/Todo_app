@@ -24,4 +24,10 @@ class TestMailer < ApplicationMailer
 		make_bootstrap_mail(to: "moulijaya@gmail.com", subject: "Approve Quote")
 	end
 
+	def daily_quote(user)
+		@quote = Quote.order("RANDOM()").first
+		@user = user
+		make_bootstrap_mail(to: @user.email, subject: "Daily Motivation")
+	end
+
 end
