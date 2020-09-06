@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'TODO APP <todoapp@gmail.com>'
   layout 'bootstrap-mailer'
 end
