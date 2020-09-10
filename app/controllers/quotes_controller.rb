@@ -52,7 +52,7 @@ class QuotesController < ApplicationController
   def update
     @quote = Quote.find(params[:id])
     if @quote.update(admin_edit)
-      redirect_to root_path
+      redirect_to root_path, danger: "Updated successfully Dude"
     else
       render 'edit'
     end
