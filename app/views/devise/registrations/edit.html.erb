@@ -1,61 +1,126 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <h3 class="ml-3 mt-2 mb-2">Edit Your Details</h3>
+  <div class="row">
+    <div class="col-12 col-lg-2"></div>
+    <div class="col-12 col-lg-8">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="field">
+          <b>Email : </b><br />
+          <input type="email"  class="form-control" value="<%= current_user.email %>" disabled >
+        </div>
+
+        <div class="field mt-3">
+            Todo update Email is <% if current_user.subscribe %> <b class="text-success">Enabled</b><% else %> <b class="text-danger">Disabled</b><% end %>
+            <label class="switch">
+              <%= f.check_box :subscribe  %>
+              <span class="slider round"></span>
+            </label>
+        </div> 
+
+        <div class="field mt-3">
+             Daily Quote Email is <% if current_user.subscribe_quote %> <b class="text-success">Enabled</b><% else %> <b class="text-danger">Disabled</b><% end %>
+            <label class="switch">
+              <%= f.check_box :subscribe_quote %>
+              <span class="slider round"></span>
+            </label>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field mt-3">
+          <b>Current Password : </b> <br><i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control"%>
+        </div>
+
+        <div class="field mt-3">
+          <b> New Password :  </b><br>(leave blank if you don't want to change Password)<br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" , placeholder: "New password Min 6 Charachters"%>
+          
+        </div>
+
+        <div class="field mt-3">
+          <b>Confirm New Password : </b><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"%>
+        </div>
+          
+        <div class="actions mt-3">
+          <%= f.submit "Update", class: "btn btn-warning btn-block " %>
+        </div>
+
+      <% end %><hr>
+
+      <h3>Delete My Account</h3>
+
+      <p>Unhappy? <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-danger"%></p>
+    </div>
+    <div class="col-12 col-lg-2"></div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="field">
-      <%= f.label :subscribe %>
-      <%= f.check_box :subscribe , data: { toggle: "toggle" ,on: "Enabled" ,off: "Disabled" ,onstyle: "success" ,offstyle: "danger" } %>
-  </div> <br>
-
-  <div class="field">
-      <%= f.label :subscribe_quote %>
-      <%= f.check_box :subscribe_quote , data: { toggle: "toggle" ,on: "Enabled" ,off: "Disabled" ,onstyle: "success" ,offstyle: "danger" } %>
-  </div>
-    <input id="toggle-event" type="checkbox" data-toggle="toggle">
-  <br>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
 
 
 <style >
-  .toggle-handle {
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 24px;
+  }
+
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: red;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: green;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
   }
 </style>

@@ -17,6 +17,5 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  match 'download', to: 'home#download_pdf', as: 'download', via: :get
   
 end

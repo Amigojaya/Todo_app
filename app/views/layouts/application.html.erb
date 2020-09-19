@@ -67,8 +67,41 @@
     </ul>
   </div>
 </nav>
+   <% if current_user && current_user.admin? %>
+    <div>
+      <button type="button" class="btn btn-danger btn-sm btn-disabled admin">You are Iron Man</button>
+    </div>
+    <% end %>
+    <div class="neat"><%= yield %></div>
+    <!-- Footer -->
+    <footer class="footer sticky font-small bg-dark pt-4 mt-4">
 
-    <%= yield %>
+      <!-- Footer Elements -->
+      <% if !current_user %>
+      <div class="container">
+
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center pt-1">
+          <li class="list-inline-item">
+            <h5 class="mb-1 text-white">Register for free</h5>
+          </li>
+          <li class="list-inline-item">
+            <%= link_to "Sign up!", new_user_registration_path, class: "btn btn-outline-secondary btn-rounded text-white" %>
+          </li>
+        </ul>
+        <!-- Call to action -->
+
+      </div>
+      <% end %>
+      <!-- Footer Elements -->
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center pb-3 text-warning">
+        © 2020 Copyright:
+        <%= link_to "TODO", root_path, class: "text-white" %>
+      </div>
+      <!-- Copyright -->
+    </footer>
   </body>
 </html>
 
@@ -79,3 +112,11 @@
         });
     }, 5000);
 </script>
+<style>
+  .admin {
+        position: fixed;
+        z-index: 999;
+        right: 0;
+        top: 115px;
+      }
+</style>

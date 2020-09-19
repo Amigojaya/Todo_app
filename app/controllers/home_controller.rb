@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 before_action :authenticate_user!, except: [:index]
   def index
   	if current_user
-  		redirect_to dashboard_path
+  		redirect_to user_tasks_path
   	end
   end
 
@@ -10,8 +10,6 @@ before_action :authenticate_user!, except: [:index]
   	
   end
 
-  def download_pdf
-  	send_file 'public/daddy.pdf', type: 'application/pdf'
-  end 
+  
 
 end
