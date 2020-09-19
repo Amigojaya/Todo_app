@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :quotes
   resources :user_tasks
 
+  delete '/user_tasks/destroy/:id', to: 'user_tasks#destroy1', as: 'destroy1'
+
   root 'home#index'
 
   get 'dashboard', to: 'home#dashboard', as: 'dashboard'

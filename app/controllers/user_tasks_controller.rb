@@ -15,10 +15,10 @@
 
   	@task = UserTask.create(user_task_params)
   	if @task.save
-  		redirect_to root_path
       if current_user.subscribe?
         TestMailer.test_mail_user(current_user, @task).deliver_now
       end
+      redirect_to user_tasks_path,success: "#{@task.name.capitalize} is successfully created"
   	else
   		render 'new'
   	end
@@ -36,11 +36,13 @@
       if @task.todos.where(completed: true).count == @task.todos.count
         @task.completed = true
         @task.save
+        redirect_to user_task_path(@task),success: "Hurray All Tasks Completed"
       else
         @task.completed = false
         @task.save
+        redirect_to user_task_path(@task)
       end
-  		redirect_to user_task_path(@task)
+  		
   	else
   		render 'edit'
   	end
@@ -50,7 +52,13 @@
   def destroy
       @task = current_user.user_tasks.find(params[:id])
       @task.destroy
-      redirect_to user_tasks_path 
+      redirect_to manage_path, danger: "#{@task.name.capitalize} Todo Deleted" 
+  end
+
+  def destroy1
+      @task = current_user.user_tasks.find(params[:id])
+      @task.destroy
+      redirect_to user_tasks_path, danger: "#{@task.name.capitalize} Todo Deleted" 
   end
 
   def manage

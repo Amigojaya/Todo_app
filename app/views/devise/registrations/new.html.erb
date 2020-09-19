@@ -1,29 +1,83 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+<% flash.each do |name, msg| %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <center><%= msg %></center>
   </div>
 <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-4 col-sm-2"></div>
+    <div class="col-11 col-lg-4 chill1 col-sm-6 text-center ">
+      <h2 class="text-white">Sign up</h2>
 
-<%= render "devise/shared/links" %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+            </div>
+            <%= f.email_field :email, autocomplete: "email" , class: "form-control", placeholder: "Email" %>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+            </div>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Min 6 Characters password" %>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+            </div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Sign up", class: "btn btn-warning" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+        </div>
+    <div class="col-12 col-lg-4 col-sm-2 chill3"></div>
+  </div>
+</div>
+<style >
+  .chill1 {
+    background-image: url('/images/1login_back.jpg');
+    background-size: 130% 100%;
+    padding-top: 5%;
+    padding-left: 50px; 
+    padding-right: 50px; 
+    padding-bottom: 180px;
+    border-radius: 12px;
+    margin-top: 3%;
+    box-shadow:   5px 5px 50px -20px white;
+  }
+  body {
+    background-image: url('/images/1.jpg');
+    background-size: cover;
+  }
+  /*For Phone*/
+    @media (max-width: 599px) { 
+
+      .chill1 {
+        margin-left: 15px;
+        margin-top: 35px;
+        padding-top: 20%;
+        padding-bottom: 100px;
+        box-shadow: 5px 5px 70px -35px white;
+      }
+       body {
+          background-image: url('/images/3.jpg');
+          background-size: cover;
+        }
+
+        }
+         
+</style>
+

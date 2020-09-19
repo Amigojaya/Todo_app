@@ -12,8 +12,14 @@
 	  <tbody>
 	  	<% @tasks.each do |task| %>
 		    <tr>
-		      <td><center><%= link_to task.name, user_task_path(task)  %></center></td>
-		      <td><center><% percent = task.todos.where(completed: true).count.to_f/task.todos.count  * 100 %> <%= percent.to_i %> % completed</center></td>
+		      <td><center><%= link_to task.name.capitalize, user_task_path(task)  %></center></td>
+		      <td><center>
+		      	<% if task.todos.exists? %>
+		      	<% percent = task.todos.where(completed: true).count.to_f/task.todos.count  * 100 %> <%= percent.to_i %> % completed
+		      	<% else %>
+		      		No tasks
+		      	<% end %>
+		      </center></td>
 		      <td><%= task.created_at.strftime("%B %e, %Y") %></td>
 		      <td>
 		      	
