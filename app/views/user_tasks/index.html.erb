@@ -1,6 +1,6 @@
 <%= render 'shared/notice' %>
 <center>
-	<%= link_to '<i class="fas fa-plus"></i> <b>Create New Todo</b>'.html_safe, new_user_task_path, :class => "btn btn-primary mb-3 color1" %>
+	<%= link_to '<i class="fas fa-plus"></i> <b>Create New Todo</b>'.html_safe, new_user_task_path, :class => "btn btn-primary mb-3 color1 mt-2" %>
 </center>
 
 <div class="container">
@@ -163,3 +163,11 @@
 	    }
 	});
 </script>
+<style>
+    .descriptive {
+      font-size: 19px;
+    }
+    .neat {
+            min-height: calc(100vh - 10px);
+           }
+  </style>

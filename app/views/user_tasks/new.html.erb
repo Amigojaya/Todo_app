@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div>Randowm quote - <%= @quote.quotes %></div>
+  <div>Random quote - <%= @quote.quotes %></div>
   <h1>Create To-do list </h1>
 	<%= form_for @task do |form| %>
     <% if @task.errors.any? %>
@@ -41,3 +41,11 @@
   <% end %>
 
 </div>
+  <style>
+    .descriptive {
+      font-size: 19px;
+    }
+    .neat {
+            min-height: calc(100vh - 143px);
+           }
+  </style>

@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h3 class="mb-3">Edit - <%= @task.name.capitalize %></h3>
+  <h3 class="mb-3 mt-2">Edit - <%= @task.name.capitalize %></h3>
 
 	<%= form_for @task do |form| %>
     <% if @task.errors.any? %>
@@ -70,3 +70,9 @@
         </div>
 
 </div>
+
+<style>
+  .neat {
+          min-height: calc(100vh - 110px);
+         }
+</style>

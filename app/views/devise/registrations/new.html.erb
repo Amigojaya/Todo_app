@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-12 col-lg-4 col-sm-2"></div>
     <div class="col-11 col-lg-4 chill1 col-sm-6 text-center ">
-      <h2 class="text-white">Sign up</h2>
+      <h1 >Sign up</h1>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
@@ -19,21 +19,21 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
             </div>
-            <%= f.email_field :email, autocomplete: "email" , class: "form-control", placeholder: "Email" %>
+            <%= f.email_field :email, autocomplete: "email" , class: "form-control shadow-sm", placeholder: "Email" %>
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
             </div>
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Min 6 Characters password" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control shadow-sm", placeholder: "Min 6 Characters " %>
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
             </div>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control shadow-sm", placeholder: "Confirm Password" %>
           </div>
 
           <div class="actions">
@@ -48,7 +48,7 @@
 </div>
 <style >
   .chill1 {
-    background-image: url('/images/1login_back.jpg');
+    background-color: rgba(255, 255, 255, 0.4);
     background-size: 130% 100%;
     padding-top: 5%;
     padding-left: 50px; 
@@ -56,10 +56,11 @@
     padding-bottom: 180px;
     border-radius: 12px;
     margin-top: 3%;
-    box-shadow:   5px 5px 50px -20px white;
+    box-shadow:   5px 5px 50px -10px black;
   }
   body {
-    background-image: url('/images/1.jpg');
+    background: rgb(125,242,242);
+    background: linear-gradient(339deg, rgba(125,242,242,0.6783088235294117) 0%, rgba(221,50,199,0.5298494397759104) 52%),  url('/images/5.jpg');
     background-size: cover;
   }
   /*For Phone*/
@@ -73,11 +74,15 @@
         box-shadow: 5px 5px 70px -35px white;
       }
        body {
-          background-image: url('/images/3.jpg');
+          background: rgb(125,242,242);
+          background: linear-gradient(339deg, rgba(125,242,242,0.6783088235294117) 0%, rgba(221,50,199,0.5298494397759104) 52%),  url('/images/6.jpg');
           background-size: cover;
         }
 
         }
+        .neat {
+          min-height: calc(100vh - 70px);
+         }
          
 </style>
 
