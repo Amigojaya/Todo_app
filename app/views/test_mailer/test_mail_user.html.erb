@@ -1,60 +1,48 @@
+	<h6 class="mt-2 text-center text-dark">Hi Amigo, <%= @user.email.capitalize %></h6>
+	<hr class="hrtag">
+	<h6 class="mt-2 text-dark">Created Todo is -> <b><%= @task.name.capitalize %></b></h6>
+	<p class="mt-2 mb-2 text-dark">Created Tasks are <b><%= @task.todos.count %></b> for this Todo</p>
 
+		<div id="progressbar">
+		  <div style="width: <%= @width.to_i %>%"></div>
+		</div>
 
-
-	<h1>This is test mail</h1>
-	<h3>Your email is - <%= @user.email %></h3>
-	<h3>Newly created task is - > <%= @task.name %></h3>
-	<h5>Created todos - <%= @task.todos.count %> todos for this task</h5>
+		<center><%= @width.to_i %>% completed<br></center>
 		
-	<div class="w3-light-grey w3-round" >
-	    <div class="w3-container w3-blue w3-round" style="width:<%= @width.to_i %>%;background-color: red;color: white;border-color: black"><%= @width.to_i %>%
-	    </div>
-
-		<%= @width.to_i %>% completed<br>
-		<center>
+		<% num = 0 %>
+		<% @task.todos.each do |todo| %>
+			<% num += 1 %>
+		<%= num %>.	<%= todo.name.capitalize[0...26] %> <% if todo.completed %> <span class="text-success">&#10004;</span> <% else %> <span class="text-danger">&#10006;</span> <% end %><br>
+		<% end %>
+		<span class="text-dark mt-2 mb-1">
 			<% if @completed == @todos_total %>
 				All <%= @todos_total %> todo's are Completed
 			<% elsif  @completed == 0 %>
-				<%= @completed %> out of <%= @todos_total %> are completed, Remember Every-thing Start from zero.
+				<%= @todos_total %> out of <%= @completed %> are completed, Remember Every-thing Starts from zero.
 			<% else %>
-				<%= @completed %> out of <%= @todos_total %> are completed
+				<%= @todos_total %> out of <%= @completed %> are completed
 			<% end %>
-		</center>
-	<ul>
-		<% @task.todos.each do |todo| %>
-		<li><%= todo.name %></li>
-		<% end %>
-	</ul>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>Stuart</td>
-      <td>Yam</td>
-      <td>@StuYam</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Who</td>
-      <td>You</td>
-      <td>@?!</td>
-    </tr>
-  </tbody>
-</table>
-<hr>
-<a class="btn btn-primary" href="https://bootstrapemail.com">Primary</a>
-<a class="btn btn-secondary" href="https://bootstrapemail.com">Secondary</a>
-<a class="btn btn-success" href="https://bootstrapemail.com">Success</a>
-<a class="btn btn-danger" href="https://bootstrapemail.com">Danger</a>
-<a class="btn btn-warning" href="https://bootstrapemail.com">Warning</a>
-<a class="btn btn-info" href="https://bootstrapemail.com">Info</a>
-<a class="btn btn-light" href="https://bootstrapemail.com">Light</a>
-<a class="btn btn-dark" href="https://bootstrapemail.com">Dark</a>
+		</span>
+<center><%= link_to "View this Todo", user_task_url(@task.id), class: "btn btn-primary mt-2" %></center>
+
+<style >
+	#progressbar {
+  background-color: lightgrey;
+  border-radius: 13px;
+  /* (height of inner div) / 2 + padding */
+  padding: 3px;
+}
+
+#progressbar>div {
+  background-color: green;
+  
+  /* Adjust with JavaScript */
+  height: 20px;
+  border-radius: 10px;
+}
+.hrtag {
+	width: 50%;
+}
+</style>
+
+

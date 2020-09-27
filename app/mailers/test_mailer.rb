@@ -13,7 +13,7 @@ class TestMailer < ApplicationMailer
 		    else
 		      @width = 0
 		end
-
+		
 		make_bootstrap_mail(to: @user.email, subject: "Test mail")
 	end
 
@@ -21,13 +21,13 @@ class TestMailer < ApplicationMailer
 		@quote = quote
 		@user = user 
 
-		make_bootstrap_mail(to: "moulijaya@gmail.com", subject: "Approve Quote")
+		make_bootstrap_mail(to: "moulijaya@gmail.com", subject: "Approve Quote #{@user.email.capitalize}")
 	end
 
 	def daily_quote(user)
 		@quote = Quote.order("RANDOM()").first
 		@user = user
-		make_bootstrap_mail(to: @user.email, subject: "Daily Motivation")
+		make_bootstrap_mail(to: @user.email, subject: "Daily Motivation #{Date.today.strftime("%d-%m-%Y")}")
 	end
 
 end

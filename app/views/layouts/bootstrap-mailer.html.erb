@@ -4,9 +4,35 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <%= stylesheet_link_tag "application-mailer", media: "all" %>
   </head>
-  <body class="bg-light">
-  	<div class="container">
-    <%= yield %>
+  <body >
+  	<div class="container" >
+  	<div class="borderdiv">
+  		<div style="height: 100px;border-top-left-radius: 10px;border-top-right-radius: 10px;background-image: url('https://ruwix.com/pics/rubiks-cube-patterns/rubiks-cube-puzzle-patterns.jpg');background-position: center;background-repeat: no-repeat;background-size: cover;position: relative;" ><span class="pl-5 pt-5 ">Todo Application</span></div>
+  		<div class="hellboy">
+	  		<div class="pad mb-2 ">
+		    	<%= yield %>
+		    </div>
+		    <hr>
+		    <div class="text-center">
+		    	Have a Great Day.
+		    </div>
+		</div>
+	</div>
     </div>
   </body>
 </html>
+<style >
+	.qi, .ri {
+    color: black; 
+}
+.im {
+    color: black;
+}
+.borderdiv {
+	border: 1px solid black;
+	border-radius: 10px;
+}
+.pad {
+	padding:8px;
+}
+</style>
