@@ -17,7 +17,7 @@
 			<% shawcol = "rgb(255,193,7)" %>
 		<% end %>
 		<% num +=1 %>
-		<div class="card mb-3 border-<%= shuff %> rounded1" style="box-shadow:   13px 34px 70px -20px <%= shawcol %>">
+		<div class="card mb-3 border-<%= shuff %> rounded1 havar" style="box-shadow:   13px 34px 70px -20px <%= shawcol %>">
 		  <div class="card-body">
 		    <blockquote class="blockquote mb-0 text-right">
 		      <p><%= num %> . <b><%= quotes.quotes %></b></p>
@@ -39,4 +39,13 @@
     .neat {
             min-height: calc(100vh - 143px);
            }
+           .havar {
+           	transition:  0.4s;
+           }
+   	.havar:hover {
+   		-webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+        
+   			}
   </style>

@@ -14,7 +14,7 @@ class TestMailer < ApplicationMailer
 		      @width = 0
 		end
 		
-		make_bootstrap_mail(to: @user.email, subject: "Test mail")
+		make_bootstrap_mail(to: @user.email, subject: "New Todo #{@task.name.capitalize}")
 	end
 
 	def alert_admin(user, quote)

@@ -1,4 +1,4 @@
-	<h6 class="mt-2 text-center text-dark">Hi Amigo, <%= @user.email.capitalize %></h6>
+	<h6 class="mt-2 text-center text-dark" style="color: #BB2CD9"><b>Hi Amigo, <%= @user.email.capitalize %></b></h6>
 	<hr class="hrtag">
 	<h6 class="mt-2 text-dark">Created Todo is -> <b><%= @task.name.capitalize %></b></h6>
 	<p class="mt-2 mb-2 text-dark">Created Tasks are <b><%= @task.todos.count %></b> for this Todo</p>
@@ -12,7 +12,7 @@
 		<% num = 0 %>
 		<% @task.todos.each do |todo| %>
 			<% num += 1 %>
-		<%= num %>.	<%= todo.name.capitalize[0...26] %> <% if todo.completed %> <span class="text-success">&#10004;</span> <% else %> <span class="text-danger">&#10006;</span> <% end %><br>
+		<%= num %>.	<span style="color: #EA7773"><b><%= todo.name.capitalize[0...26] %></b></span> <% if todo.completed %> <span class="text-success">&#10004;</span> <% else %> <span class="text-danger">&#10006;</span> <% end %><br>
 		<% end %>
 		<span class="text-dark mt-2 mb-1">
 			<% if @completed == @todos_total %>
@@ -23,20 +23,19 @@
 				<%= @todos_total %> out of <%= @completed %> are completed
 			<% end %>
 		</span>
-<center><%= link_to "View this Todo", user_task_url(@task.id), class: "btn btn-primary mt-2" %></center>
+<center><%= link_to "View this Todo", user_task_url(@task.id), class: "btn btn-primary mt-2" %> <span class="text-dark">Have a Great Day</span></center>
+<img src="https://i.ibb.co/4wbDb3G/signature.png" style="width: 250px" class="float-right">
+
 
 <style >
 	#progressbar {
   background-color: lightgrey;
   border-radius: 13px;
-  /* (height of inner div) / 2 + padding */
   padding: 3px;
 }
 
 #progressbar>div {
   background-color: green;
-  
-  /* Adjust with JavaScript */
   height: 20px;
   border-radius: 10px;
 }

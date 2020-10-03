@@ -1,5 +1,6 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<span style="color: #E74292">Welcome Amigo</span>,<span style="color: #BB2CD9;text-decoration: none;"> <b><%= @email.capitalize %>!</b></span>
+<p>Succesfully Registered, Excited to start using our Todo application Please Click on button below to confirm your Email</p>
+<br>
+<span style=""><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), :style=> 'background-color: #4CAF50; padding: 14px 40px;border-radius: 10px;text-decoration: none;color: white;border: none;font-size: 16px;border: 2px solid green;' %></span><br><br>
+<p>Have a GREAT DAY</p>
+<img src="https://i.ibb.co/4wbDb3G/signature.png" style="width: 250px;float: right;" ><br>

@@ -40,8 +40,10 @@
             <%= f.submit "Sign up", class: "btn btn-warning" %>
           </div>
         <% end %>
-
-        <%= render "devise/shared/links" %>
+        <div class="mt-2" >
+          <span > ALready an User? - <%= link_to "Log in", new_session_path(resource_name) %></span><br />
+          <span ><%= link_to "Resend confirmation instructions", new_confirmation_path(resource_name) %></span><br />
+        </div>
         </div>
     <div class="col-12 col-lg-4 col-sm-2 chill3"></div>
   </div>

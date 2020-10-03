@@ -1,6 +1,12 @@
-<span class=""><center>Today Quotation for Motivation</center></span><br>
+<span style="color: #EA7773"><center><b>Good Morning Amigo</b></center></span><br>
+<span class="text-dark"><b><center>Today Quotation for Motivation</center></b></span><br>
 <div >
-	" <%= @quote.quotes.capitalize %> "
+	"<span style="font-family: TREBUCHET MS;color: #F000FF;font-size: 18px"><b><%= @quote.quotes.capitalize %></b></span>"
 	<br>
-	<span class="float-right" style="font-family: cursive;font-size: 14px"><%= @quote.author.capitalize %></span>
+	<span class="float-right text-dark" style="font-family: helvetica;font-size: 14px">-- <b><%= @quote.author.capitalize %></b></span>
+</div>
+<div>
+	<br><br>
+	<center><%= link_to "Find out more Quotations here", quotes_url, class: "btn btn-primary btn-sm" %> <span class="text-dark">Have a Great Day</span></center>
+	<img src="https://i.ibb.co/4wbDb3G/signature.png" style="width: 250px" class="float-right">
 </div>

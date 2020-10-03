@@ -6,18 +6,16 @@
   </head>
   <body >
   	<div class="container" >
-  	<div class="borderdiv">
-  		<div style="height: 100px;border-top-left-radius: 10px;border-top-right-radius: 10px;background-image: url('https://ruwix.com/pics/rubiks-cube-patterns/rubiks-cube-puzzle-patterns.jpg');background-position: center;background-repeat: no-repeat;background-size: cover;position: relative;" ><span class="pl-5 pt-5 ">Todo Application</span></div>
-  		<div class="hellboy">
-	  		<div class="pad mb-2 ">
-		    	<%= yield %>
-		    </div>
-		    <hr>
-		    <div class="text-center">
-		    	Have a Great Day.
-		    </div>
+	  	<div >
+	  		<div style="height: 200px;background-image: url('https://i.ibb.co/FnrXp6C/rsz-1new1.jpg');background-position: center;background-repeat: no-repeat;background-size: cover;position: relative;border-top-left-radius: 10px;
+	border-top-right-radius: 10px;" class="kapa"><center><span class="pt-5 " style="font-size: 22px">Todo Application</span></center>	
+	  		</div>
+	  		<div class="hellboy borderdiv" >
+		  		<div class="pad mb-2 ">
+			    	<%= yield %>
+			    </div>
+			</div>
 		</div>
-	</div>
     </div>
   </body>
 </html>
@@ -29,10 +27,16 @@
     color: black;
 }
 .borderdiv {
-	border: 1px solid black;
-	border-radius: 10px;
+	border-bottom: 5px solid black;
+	/*border-left: 1px solid black;
+	border-right: 1px solid black;*/
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 .pad {
 	padding:8px;
 }
+/*.kapa {
+	border-left: 4px solid black;
+}*/
 </style>

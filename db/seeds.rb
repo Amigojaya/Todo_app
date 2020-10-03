@@ -51,7 +51,7 @@ quote = Quote.create([
 						{ quotes: "The secret of getting ahead is getting started", author: "Mark Twain", status: "approved" },
 						{ quotes: "The best time to plant a tree was 20 years ago. The second best time is now", author: "Chinese Proverb", status: "approved" },
 						{ quotes: "I wake up every morning and think to myself, ‘how far can I push this company in the next 24 hours", author: "Leah Busque", status: "approved" },
-						{ quotes: "f people are doubting how far you can go, go so far that you can’t hear them anymore", author: "Michele Ruiz", status: "approved" },
+						{ quotes: "People are doubting how far you can go, go so far that you can’t hear them anymore", author: "Michele Ruiz", status: "approved" },
 						{ quotes: "Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten", author: "Neil Gaiman", status: "approved" },
 						{ quotes: "Everything you can imagine is real", author: "Pablo Picasso", status: "approved" },
 						{ quotes: "It’s no use going back to yesterday, because I was a different person then", author: "Lewis Carroll", status: "approved" },
