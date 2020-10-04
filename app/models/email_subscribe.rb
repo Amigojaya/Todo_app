@@ -1,0 +1,2 @@
+class EmailSubscribe < ApplicationRecord
+end
