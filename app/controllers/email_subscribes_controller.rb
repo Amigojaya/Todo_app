@@ -9,7 +9,7 @@ class EmailSubscribesController < ApplicationController
 		
 		if !@email
 			puts User.exists?(email: params[:email])
-			if !User.exists?(email: params[:email])
+			if !User.exists?(email: params[:email]) && params[:email] != nil
 				 new_sub = EmailSubscribe.new(email_params)
 				 if new_sub.save
 				 	redirect_to root_path, success: "Successfully Added you email to Daily Quotation Gang" 
