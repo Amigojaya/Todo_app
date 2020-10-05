@@ -17,5 +17,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
+  get '/email_subscribe', to: 'email_subscribes#email_subscribe_get', as: 'email_get'
+
+  post '/email_subscribe_post', to: 'email_subscribes#email_subscribe_post', as: 'email_post'
   
 end
