@@ -1,15 +1,34 @@
 <%= render 'shared/notice' %>
 <!-- #change color of notice dude -->
+<div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+	  <div class="text-white text-center py-5 px-4">
+	    <div>
+	      <h1 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>ToDo is <span class="hii"></span></strong></h1>
+	      <p class="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+	        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
+	      </p>
+	      <a class="btn btn-outline-white btn-md"><i class="fas fa-clone left"></i> View project</a>
+	    </div>
+	  </div>
+	</div>
 <div class="container">
-	<h1>Todo App</h1>
+	<div>
+		<%= render partial: 'email_subscribes/email_share' %>
+	</div>
 </div>
 
-<div>
-	<%= render partial: 'email_subscribes/email_share' %>
-</div>
+
 <style >
 	.neat {
   min-height: calc(100vh - 200px);
  }
 </style>
+<script >
+	var typed = new Typed('.hii', {
+	  strings: ['Awesome', 'Good'],
+	  typeSpeed: 50,
+	  typeSpeed: 70,
+	  smartBackspace: true // Default value
+	});
+</script>
 
