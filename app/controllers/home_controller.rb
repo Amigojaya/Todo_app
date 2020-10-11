@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
-before_action :authenticate_user!, except: [:index]
+
   def index
   	@email = EmailSubscribe.new
+  	@quote = Quote.order("RANDOM()").first
   	if current_user
   		redirect_to user_tasks_path
   	end
@@ -9,6 +10,10 @@ before_action :authenticate_user!, except: [:index]
 
   def dashboard
   	
+  end
+
+  def about_me
+    
   end
 
   
