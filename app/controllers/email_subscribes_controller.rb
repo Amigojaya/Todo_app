@@ -8,7 +8,6 @@ class EmailSubscribesController < ApplicationController
 		@email = EmailSubscribe.exists?(email: params[:email]) rescue nil
 		
 		if !@email 
-			puts User.exists?(email: params[:email])
 			if !User.exists?(email: params[:email]) 
 				 new_sub = EmailSubscribe.new(email_params)
 				 if verify_recaptcha(model: @user) && new_sub.save
