@@ -4,6 +4,7 @@
     <title>Task</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="icon" href="https://img.icons8.com/fluent/48/000000/todo-list.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -17,11 +18,12 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light color2">
-  <%= link_to "Todo YO!!", "#", class: "navbar-brand text-dark" %>
+  <img src="https://img.icons8.com/fluent/48/000000/todo-list.png" class="mr-1" style="width: 30px" /> <%= link_to "Todo YO!!", "#", class: "navbar-brand text-dark" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -40,10 +42,10 @@
       </li>
       <% end %>
       <li class="nav-item active">
-        <%= link_to "About us", "#", class: "nav-link text-dark" %>
+        <%= link_to "About us", about_me_path , class: "nav-link text-dark" %>
       </li>
       <li class="nav-item active">
-        <%= link_to "How this work", "#", class: "nav-link text-dark" %>
+        <%= link_to "How this work", how_this_works_path, class: "nav-link text-dark" %>
       </li>
       
     </ul>
@@ -53,7 +55,7 @@
     <ul class="navbar-nav ml-auto">
       <% if !current_user %>
       <li>
-        <span class="mr-2 mb-1"><%= link_to "Log-in", new_user_session_path, class: "btn btn-outline-success text-dark" %></span> || <span class="mx-2 "><%= link_to "Register", new_user_registration_path, class: "btn btn-outline-warning text-dark" %></span>
+        <span class="mr-2 mb-1"><%= link_to '<i class="fas fa-sign-in-alt"></i> Log-in'.html_safe, new_user_session_path, class: "btn btn-outline-success text-dark" %></span> || <span class="mx-2 "><%= link_to '<i class="fas fa-user-plus"></i> sign-up'.html_safe, new_user_registration_path, class: "btn btn-outline-warning text-dark" %></span>
       </li>
       <li>
         
@@ -85,7 +87,7 @@
     <footer class="footer sticky font-small color3 pt-4 mt-4">
 
       <!-- Footer Elements -->
-      <% if !current_user %>
+      
       <!-- <div class="container"> -->
 
         <!-- Call to action -->
@@ -103,12 +105,13 @@
         <!-- Call to action -->
 
       <!-- </div> -->
-      <% end %>
+      
       <!-- Footer Elements -->
 
       <!-- Copyright -->
       <div class="footer-copyright text-center pb-3 text-warning">
-      <span class=" text-white" style="font-size: 20px">Register for free</span> <%= link_to "Sign up!", new_user_registration_path, class: "btn btn-outline-secondary btn-rounded text-white" %> <span class="text-white">||</span> © 2020 Copyright:
+        <% if !current_user %>
+      <span class=" text-white" style="font-size: 20px">Register for free</span> <%= link_to "Sign up!", new_user_registration_path, class: "btn btn-outline-secondary btn-rounded text-white" %> <span class="text-white">||<% end %></span> © 2020 Copyright:
         <%= link_to "TODO", root_path, class: "text-white" %>
       </div>
       <!-- Copyright -->

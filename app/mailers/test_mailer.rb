@@ -6,7 +6,6 @@ class TestMailer < ApplicationMailer
 		@todos_total = @task.todos.count
 		@completed = @task.todos.where(completed: true).count
 		 @width = @completed.to_f/@todos_total * 100
-
 	    if @task.todos.exists? == true
 	      
 		      @width = @completed.to_f/@todos_total * 100
@@ -24,8 +23,8 @@ class TestMailer < ApplicationMailer
 		make_bootstrap_mail(to: "moulijaya@gmail.com", subject: "Approve Quote #{@user.email.capitalize}")
 	end
 
-	def daily_quote(user)
-		@quote = Quote.order("RANDOM()").first
+	def daily_quote(user,quote)
+		@quote = quote
 		@user = user
 		make_bootstrap_mail(to: @user.email, subject: "Daily Motivation #{Date.today.strftime("%d-%m-%Y")}")
 	end

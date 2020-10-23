@@ -16,6 +16,10 @@ class HomeController < ApplicationController
     
   end
 
+  def how_this_works 
+
+  end
+
   
 
 end

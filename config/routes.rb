@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get '/email_subscribe', to: 'email_subscribes#email_subscribe_get', as: 'email_get'
   
   get '/about_me', to: 'home#about_me', as: 'about_me'
+  
+  get '/how_this_works', to: 'home#how_this_works', as: 'how_this_works'
 
   post '/email_subscribe_post', to: 'email_subscribes#email_subscribe_post', as: 'email_post'
   
