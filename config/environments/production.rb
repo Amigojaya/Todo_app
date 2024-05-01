@@ -91,7 +91,7 @@ Rails.application.configure do
 
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'https://todothingsapp.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'https://jaya-todo-app.onrender.com' }
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
