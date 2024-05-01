@@ -36,6 +36,7 @@
 				No of Todo's in Pending - <b><%= current_user.user_tasks.count - current_user.user_tasks.where(completed: true).count %></b> <br>
 			</div>
 			<div class="chill mt-4">
+				<% if @quote.present? %>
 			 <blockquote class="blockquote blockquote-custom bg-white pt-5 pb-4 pl-5 pr-3 shadow rounded"  >
                     <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
                     <div class="blockquote-header"><h4 style="margin-left: -10px">MOTIVATE YOUR SELF</h4></div>
@@ -50,6 +51,7 @@
                         	</span>
                     </footer>
                 </blockquote>
+                <% end %>
                 </div>
 		</div>
 

@@ -15,10 +15,12 @@
 	
 	<div  class="row">
 		<div class="col-12 col-lg-6">
-			<center>
-				<h5><b>Subscribe to our Daily Motivation EMAIL Subcription</b></h5>
-				<p>Like this Every day - <span class="motiv"><%= @quote.quotes %></span></p><br>
-			</center>
+			<% if @quote.present? %>
+				<center>
+					<h5><b>Subscribe to our Daily Motivation EMAIL Subcription</b></h5>
+					<p>Like this Every day - <span class="motiv"><%= @quote.quotes %></span></p><br>
+				</center>
+			<% end %>
 		</div>
 		<div class="col-12 col-lg-6" >
 			<div class="subscribe_box" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);background-size: cover;">
